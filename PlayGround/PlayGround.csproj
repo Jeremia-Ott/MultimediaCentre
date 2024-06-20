@@ -7,4 +7,10 @@
     <Nullable>enable</Nullable>
   </PropertyGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\Database-Hybrid\Database-Hybrid.csproj" />
+    <ProjectReference Include="..\Database-NoSQL\Database-NoSQL.csproj" />
+    <ProjectReference Include="..\Database-SQL\Database-SQL.csproj" />
+  </ItemGroup>
+
 </Project>
