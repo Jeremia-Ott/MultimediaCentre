@@ -11,7 +11,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Database-Hybrid", "Database
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Database-SQL", "Database-SQL\Database-SQL.csproj", "{B32517A6-D79A-425B-9507-4132D8CA0010}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Database-NoSQL", "Database-NoSQL\Database-NoSQL.csproj", "{01C96404-3F89-4935-AE5B-1F89173CC05D}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Database-NoSQL", "Database-NoSQL\Database-NoSQL.csproj", "{01C96404-3F89-4935-AE5B-1F89173CC05D}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Shared", "Shared\Shared.csproj", "{559B0C48-C45A-46BB-96EE-3F24677AC71A}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -35,6 +37,10 @@ Global
 		{01C96404-3F89-4935-AE5B-1F89173CC05D}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{01C96404-3F89-4935-AE5B-1F89173CC05D}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{01C96404-3F89-4935-AE5B-1F89173CC05D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{559B0C48-C45A-46BB-96EE-3F24677AC71A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{559B0C48-C45A-46BB-96EE-3F24677AC71A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{559B0C48-C45A-46BB-96EE-3F24677AC71A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{559B0C48-C45A-46BB-96EE-3F24677AC71A}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
