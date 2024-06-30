@@ -3,11 +3,17 @@ using System.Data;
 
 namespace Database_SQL;
 
-public class TableInitializer(IDbConnection connection)
+public class TableInitializer
 {
+    private readonly IDbConnection connection;
+
+    public TableInitializer()
+    {
+        connection = new DbSettings().CreateConnection();
+    }
+
     public async Task InitTables()
     {
-        Console.Write("InitTables..");
         await InitMedia();
         await InitMediaName();
         await InitConnection();
@@ -18,7 +24,6 @@ public class TableInitializer(IDbConnection connection)
         await InitAnimemovie();
         await InitAnimeseries();
         await InitAnimeSeason();
-        Console.WriteLine(".finished");
     }
 
     private async Task InitMedia()

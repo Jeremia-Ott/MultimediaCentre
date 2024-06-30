@@ -8,16 +8,12 @@ namespace Database_SQL
     {
         private readonly DbSettings _dbSettings = new();
 
-        public IDbConnection CreateConnection()
-        {
-            var connectionString = $"Host={_dbSettings.Server}; Database={_dbSettings.Database}; Username={_dbSettings.UserId}; Password={_dbSettings.Password};";
-            return new NpgsqlConnection(connectionString);
-        }
-
         public async Task Init()
         {
+            Console.WriteLine("# Start SQL Init");
             await InitDatabase();
             await InitTables();
+            Console.WriteLine("# SQL Init finished!");
         }
 
         private async Task InitDatabase()
@@ -26,7 +22,9 @@ namespace Database_SQL
             var connectionString = $"Host={_dbSettings.Server}; Database=postgres; Username={_dbSettings.UserId}; Password={_dbSettings.Password};";
             using var connection = new NpgsqlConnection(connectionString);
 
-            if (await DoesDatabaseExist(connection)) return;
+            if (await DoesDatabaseExist(connection))
+                await DropDatabase(connection);
+
             await CreateDatabase(connection);
         }
 
@@ -41,12 +39,21 @@ namespace Database_SQL
         {
             var sql = $"CREATE DATABASE \"{_dbSettings.Database}\"";
             await connection.ExecuteAsync(sql);
+            Console.WriteLine("Database created!");
+        }
+
+        private async Task DropDatabase(IDbConnection connection)
+        {
+            var sql = $"DROP DATABASE \"{_dbSettings.Database}\"";
+            await connection.ExecuteAsync(sql);
+            Console.WriteLine("Database dropped!");
         }
 
         private async Task InitTables()
         {
-            using var connection = CreateConnection();
-            await new TableInitializer(connection).InitTables();
+            Console.Write("InitTables..");
+            await new TableInitializer().InitTables();
+            Console.WriteLine(".finished!");
         }
     }
 }
