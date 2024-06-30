@@ -267,5 +267,18 @@ public class DbRepository
             new { From, Take });
     }
 
+    //public async Task<Media> GetMediaWithDetailsByIdAsync(int mediaId)
+    //{
+    //    if (mediaId < 1)
+    //    {
+    //        throw new ArgumentException("Invalid mediaId");
+    //    }
+
+    //    using var connection = dbSettings.CreateConnection();
+    //    return await connection.QueryAsync<Media>(
+    //        "SELECT * FROM Media OFFSET @From LIMIT @Take",
+    //        new { MediaId = mediaId });
+    //}
+
     #endregion
 }

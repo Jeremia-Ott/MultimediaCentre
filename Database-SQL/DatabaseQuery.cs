@@ -14,6 +14,7 @@ public class DatabaseQuery
     public async Task ExecuteAllQueriesAsync()
     {
         await GetAllMedia();
+        await GetMediaWithDetailsById();
     }
 
     private async Task GetAllMedia()
@@ -23,14 +24,13 @@ public class DatabaseQuery
         Console.WriteLine("## GetAllMedia()");
         foreach (var media in medias)
         {
-            string jsonString = JsonConvert.SerializeObject(media, Formatting.Indented);
-            Console.WriteLine(jsonString);
+            Console.WriteLine(media);
         }
     }
 
-    private async Task GetMediaWithDetails()
+    private async Task GetMediaWithDetailsById()
     {
-
+        //var media = await dbRepository.GetMediaWithDetailsByIdAsync(1);
     }
 
     private async Task GetMediaByEmotionalRating()

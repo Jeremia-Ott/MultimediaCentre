@@ -1,4 +1,6 @@
-﻿namespace Database_SQL.Model.SQL;
+﻿using Newtonsoft.Json;
+
+namespace Database_SQL.Model.SQL;
 
 public class Media
 {
@@ -12,6 +14,11 @@ public class Media
     public string? RatingContext { get; set; }
     public string? Description { get; set; }
     public WatchStatus WatchStatus { get; set; }
+
+    public override string ToString()
+    {
+        return JsonConvert.SerializeObject(this, Formatting.Indented);
+    }
 }
 
 public enum MediaType
