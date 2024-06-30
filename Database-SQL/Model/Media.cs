@@ -1,6 +1,6 @@
 ﻿namespace Database_SQL.Model.SQL;
 
-public abstract class Media
+public class Media
 {
     public int? Id { get; set; }
     public List<MediaName> Names { get; } = [];

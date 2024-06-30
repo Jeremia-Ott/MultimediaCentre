@@ -1,5 +1,6 @@
 ﻿using Dapper;
 using Database_SQL.Model.SQL;
+using System.Security.Cryptography;
 
 namespace Database_SQL;
 
@@ -251,6 +252,19 @@ public class DbRepository
 
         next = await connection.ExecuteScalarAsync<int>("SELECT MAX(ReferenceId) FROM Connection");
         return ++next;
+    }
+
+    public async Task<IEnumerable<Media>> SelectAllMediaAsync(int From, int Take)
+    {
+        if (From < 0 || Take <= 0)
+        {
+            throw new ArgumentException("Invalid paging parameters");
+        }
+
+        using var connection = dbSettings.CreateConnection();
+        return await connection.QueryAsync<Media>(
+            "SELECT * FROM Media OFFSET @From LIMIT @Take",
+            new { From, Take });
     }
 
     #endregion

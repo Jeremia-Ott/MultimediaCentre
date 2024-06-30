@@ -3,3 +3,4 @@ using Database_SQL;
 
 var dataContext = new DataContext();
 await dataContext.InitAsync();
+await new DatabaseQuery().ExecuteAllQueriesAsync();
