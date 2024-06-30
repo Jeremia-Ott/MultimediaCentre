@@ -30,6 +30,7 @@ public class TableInitializer(IDbConnection connection)
                 Rating INT2,
                 RatingContext VARCHAR(255),
                 Description VARCHAR,
+                WatchStatus INT2 NOT NULL,
                 PRIMARY KEY(Id)
             );
             """;
@@ -123,6 +124,7 @@ public class TableInitializer(IDbConnection connection)
             CREATE TABLE IF NOT EXISTS ManhwaManga (
                 MediaId INT NOT NULL,
                 ChapterCount INT2,
+                ChapterWatched INT2,
                 ReleaseWeekday INT2 NOT NULL,
                 PRIMARY KEY(MediaId),
                 CONSTRAINT Fk_ManhwaManga
@@ -166,7 +168,8 @@ public class TableInitializer(IDbConnection connection)
             CREATE TABLE IF NOT EXISTS Season (
                 MediaId INT NOT NULL,
                 Nr INT2 NOT NULL,
-                EpisodeCount INT2 NOT NULL,
+                EpisodeCount INT2,
+                EpisodeWatched INT2,
                 PRIMARY KEY(MediaId),
                 CONSTRAINT Fk_Season
                   FOREIGN KEY(MediaId) 
@@ -201,6 +204,7 @@ public class TableInitializer(IDbConnection connection)
             CREATE TABLE IF NOT EXISTS Animeseries (
                 MediaId INT NOT NULL,
                 EpisodeCount INT2,
+                EpisodeWatched INT2,
                 ReleaseWeekday INT2 NOT NULL,
                 DubDelay INT2,
                 PRIMARY KEY(MediaId),
