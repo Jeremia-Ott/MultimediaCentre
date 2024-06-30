@@ -23,6 +23,7 @@ public class TableInitializer
         await InitSeries();
         await InitAnimemovie();
         await InitAnimeseries();
+        await InitManhwaManga();
         await InitAnimeSeason();
     }
 
