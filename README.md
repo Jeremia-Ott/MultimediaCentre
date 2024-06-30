@@ -10,4 +10,4 @@ The Password must be the same as in ./Database-SQL/DbSettings.cs
 ![Select Password](./img/PostgreSQL-Select_Password.png)
 
 ## Contributers
-ToDo
+- Jeremia Ott - jeremia.ott@edu.fh-johanneum.at
