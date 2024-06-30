@@ -21,10 +21,10 @@ public class TableInitializer
         await InitEmotionalRating();
         await InitMovie();
         await InitSeries();
-        await InitAnimemovie();
         await InitAnimeseries();
-        await InitManhwaManga();
         await InitAnimeSeason();
+        await InitAnimemovie();
+        await InitManhwaManga();
     }
 
     private async Task InitMedia()
@@ -147,7 +147,7 @@ public class TableInitializer
         var sql = """
             CREATE TABLE IF NOT EXISTS Movie (
                 MediaId INT NOT NULL,
-                LenghInMin INT2,
+                LengthInMin INT2,
                 ReleaseDate DATE,
                 PRIMARY KEY(MediaId),
                 CONSTRAINT Fk_Movie
@@ -172,11 +172,13 @@ public class TableInitializer
             );
 
             CREATE TABLE IF NOT EXISTS Season (
+                Id INT GENERATED ALWAYS AS IDENTITY,
                 MediaId INT NOT NULL,
                 Nr INT2 NOT NULL,
                 EpisodeCount INT2,
                 EpisodeWatched INT2,
-                PRIMARY KEY(MediaId),
+                PRIMARY KEY(Id),
+                UNIQUE(MediaId, Nr),
                 CONSTRAINT Fk_Season
                   FOREIGN KEY(MediaId) 
                     REFERENCES Series(MediaId)
@@ -191,14 +193,18 @@ public class TableInitializer
         var sql = """
             CREATE TABLE IF NOT EXISTS Animemovie (
                 MediaId INT NOT NULL,
-                LenghInMin INT2,
-                KinoRelease DATE,
+                LengthInMin INT2,
+                CinemaRelease DATE,
                 DiskRelease DATE,
+                AnimeSeasonId INT,
                 PRIMARY KEY(MediaId),
                 CONSTRAINT Fk_Animemovie
                   FOREIGN KEY(MediaId)
                     REFERENCES Media(Id)
-                    ON DELETE CASCADE
+                    ON DELETE CASCADE,
+                CONSTRAINT Fk_Animemovie_AnimeSeasonId
+                  FOREIGN KEY(AnimeSeasonId)
+                    REFERENCES AnimeSeason(Id)
             );
             """;
         await connection.ExecuteAsync(sql);
@@ -242,20 +248,6 @@ public class TableInitializer
                 Year INT2 NOT NULL,
                 Type INT2 NOT NULL,
                 PRIMARY KEY(Id)
-            );
-
-            CREATE TABLE IF NOT EXISTS Animemovie_AnimeSeason (
-                MediaId INT NOT NULL,
-                AnimeSeasonId INT NOT NULL,
-                PRIMARY KEY(MediaId, AnimeSeasonId),
-                CONSTRAINT Fk_Animemovie_AnimeSeason_MediaId
-                  FOREIGN KEY(MediaId)
-                    REFERENCES Animemovie(MediaId)
-                    ON DELETE CASCADE,
-                CONSTRAINT Fk_Animemovie_AnimeSeason_Id
-                  FOREIGN KEY(AnimeSeasonId)
-                    REFERENCES AnimeSeason(Id)
-                    ON DELETE CASCADE
             );
             
             CREATE TABLE IF NOT EXISTS Animeseries_AnimeSeason (

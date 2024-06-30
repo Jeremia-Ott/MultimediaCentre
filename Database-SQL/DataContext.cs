@@ -8,11 +8,12 @@ namespace Database_SQL
     {
         private readonly DbSettings _dbSettings = new();
 
-        public async Task Init()
+        public async Task InitAsync()
         {
             Console.WriteLine("# Start SQL Init");
             await InitDatabase();
             await InitTables();
+            await InitData();
             Console.WriteLine("# SQL Init finished!");
         }
 
@@ -53,6 +54,13 @@ namespace Database_SQL
         {
             Console.Write("InitTables..");
             await new TableInitializer().InitTables();
+            Console.WriteLine(".finished!");
+        }
+
+        private async Task InitData()
+        {
+            Console.Write("InitData..");
+            await new DataInitializer().InitData();
             Console.WriteLine(".finished!");
         }
     }

@@ -2,4 +2,4 @@
 using Database_SQL;
 
 var dataContext = new DataContext();
-await dataContext.Init();
+await dataContext.InitAsync();
