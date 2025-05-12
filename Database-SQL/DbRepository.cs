@@ -1,6 +1,5 @@
 ﻿using Dapper;
 using Database_SQL.Model.SQL;
-using System.Security.Cryptography;
 
 namespace Database_SQL;
 
